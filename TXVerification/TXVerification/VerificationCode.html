@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码</title>
+    <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+    <script language="javascript">
+    //验证码回调
+    function backClick(resData) {
+        window.webkit.messageHandlers.verificationClick.postMessage(resData);
+    }
+    </script>
+</head>
+
+<body>
+   <div id="TencentCaptchaBtn">
+
+    </div>
+</body>
+<script>
+    new TencentCaptcha(
+        document.getElementById('TencentCaptchaBtn'),
+        '2094187322',
+        function (res) {
+            console.log(res) // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+            // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+            backClick(res);
+        },
+    ).show();
+</script>
+<style>
+   
+</style>
+
+</html>
