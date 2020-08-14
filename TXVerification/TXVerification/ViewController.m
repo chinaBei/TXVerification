@@ -20,7 +20,12 @@
 @end
 
 @implementation ViewController
-
+-(void)dealloc
+{
+    NSLog(@"dealloc");
+    //移除注册的js方法
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"verificationClick"];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
