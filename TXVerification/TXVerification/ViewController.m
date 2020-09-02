@@ -52,7 +52,20 @@
             
              */
         }else{
-            [[[UIAlertView alloc] initWithTitle:@"验证失败" message:@"验证码校验失败,请重新尝试" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil] show];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"验证失败" message:@"验证码校验失败,请重新尝试" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                //
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+                
+            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
         }
         [self.backgroundView removeFromSuperview];
     }
